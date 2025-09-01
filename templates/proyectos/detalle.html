@@ -1,0 +1,24 @@
+<!-- templates/proyectos/detalle.html -->
+{% extends "base.html" %}
+{% block title %}{{ proyecto.nombre }}{% endblock %}
+
+{% block contenido %}
+<h1>{{ proyecto.nombre }}</h1>
+<p class="text-muted">{{ proyecto.descripcion }}</p>
+
+<h2 class="h5 mt-4">Tareas</h2>
+<ul class="list-group mb-3">
+  {% for t in proyecto.tareas.all %}
+    <li class="list-group-item">
+      <input type="checkbox" disabled {% if t.hecho %}checked{% endif %}>
+      {{ t.titulo }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">Sin tareas.</li>
+  {% endfor %}
+</ul>
+
+<!-- Aquí está corregido -->
+<a class="btn btn-primary" href="{% url 'tarea_crear' pk=proyecto.pk %}">Nueva tarea</a>
+<a class="btn btn-secondary" href="{% url 'proyecto_lista' %}">Volver</a>
+{% endblock %}

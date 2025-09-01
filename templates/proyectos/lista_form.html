@@ -1,0 +1,14 @@
+<!-- templates/proyectos/lista_form.html -->
+{% extends "base.html" %}
+{% block title %}Nueva tarea{% endblock %}
+
+{% block contenido %}
+<h1>Nueva tarea para: {{ proyecto.nombre }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Guardar</button>
+  <a class="btn btn-secondary" href="{% url 'proyecto_detalle' pk=proyecto.pk %}">Cancelar</a>
+</form>
+{% endblock %}

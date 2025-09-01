@@ -1,0 +1,17 @@
+<!-- templates/proyectos/lista.html -->
+{% extends "base.html" %}
+{% block title %}Proyectos{% endblock %}
+{% block contenido %}
+<h1 class="mb-3">Proyectos activos</h1>
+<ul class="list-group">
+ {% for p in proyectos %}
+ <li class="list-group-item d-flex justify-content-between">
+ <a href="{% url 'proyecto_detalle' p.pk %}">{{ p.nombre }}</a>
+ <small class="text-muted">{% if p.fecha_inicio %}{{ p.fecha_inicio
+}}{% else %}Sin fecha{% endif %}</small>
+ </li>
+ {% empty %}
+ <li class="list-group-item">No hay proyectos activos.</li>
+ {% endfor %}
+</ul>
+{% endblock %}
